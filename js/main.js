@@ -48,6 +48,20 @@ initCardSelector($cardSelector);
 카드 셀렉터 보여주기
 */
 let showCardSelector = function (e) {
+  const x = e.clientX;
+  const y = e.clientY;
+
+  const viewportWidth = window.innerWidth;
+  const viewportHeight = window.innerHeight;
+
+  $cardSelector.style.top = y + 'px';
+
+  if (x + $cardSelector.offsetWidth > viewportWidth) {
+    $cardSelector.style.left = (viewportWidth - $cardSelector.offsetWidth) + 'px';
+  } else {
+    $cardSelector.style.left = x + 'px';
+  }
+
   $cardSelector.style.visibility = 'hidden';
   $cardSelector.style.visibility = 'visible';
 };
