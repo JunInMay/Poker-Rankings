@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+
+  <style>
+    html, body {
+      height: 100%;
+    }
+
+    h1 {
+      text-align: center;
+    }
+
+
+    /*
+    main cards
+    */
+
+    /*1 : 1.452 비율*/
+    .main-card {
+      color: blueviolet;
+      background-color: antiquewhite;
+      border-width: 10px;
+      border-color: red;
+      width: 200px;
+      height: 290.4px;
+    }
+
+    .main-card-container {
+      display: flex;
+      color: black;
+    }
+
+    /*
+    card selector
+    */
+    .card-selector-container {
+      display: block;
+
+      position: absolute;
+      top: 10px;
+
+      visibility: hidden;
+
+    }
+
+    .card-selector-suit {
+      display: flex;
+    }
+
+    .card-selector-card {
+      background-color: rebeccapurple;
+      width: 50px;
+      height: 72px;
+    }
+  </style>
+
+</head>
+
+<body>
+  <div id="content-wrapper">
+    <h1>Poker Rankings!</h1>
+    <div class="main-card-container">
+      <div id="card-1" class="main-card">카드1</div>
+      <div id="card-2" class="main-card">카드2</div>
+      <div id="card-3" class="main-card">카드3</div>
+      <div id="card-4" class="main-card">카드4</div>
+      <div id="card-5" class="main-card">카드5</div>
+    </div>
+
+    <div class="card-selector-container">
+    </div>
+</div>
+</body>
+
+<script src="../js/main.js"></script>
+
+</html>

@@ -1,0 +1,41 @@
+<head>
+  <style>
+
+  </style>
+  <script>
+
+    function test() {
+      a = 10;
+    }
+
+    test();
+    console.log(a);
+
+    for (i = 0; i < 10; i++) {
+
+    }
+
+    console.log(i); // 10 출력
+
+    for (let j = 0; j < 10; j++) {
+
+    }
+    console.log(j); // not defined error
+
+    var num = 10; // 전역 변수 num을 선언함.
+
+    function globalNum() {
+      document.write("함수 내부에서 변수 num의 값은 " + num + "입니다.<br>"); // 20
+      var num = 20; // 같은 이름의 지역 변수 num을 선언함.
+      document.write("함수 내부에서 변수 num의 값은 " + num + "입니다.<br>"); // 20
+    }
+
+    globalNum(); // 함수 globalNum()을 호출함.
+
+    document.write("함수의 호출이 끝난 뒤 변수 num의 값은 " + num + "입니다."); // 10
+  </script>
+</head>
+
+<body>
+
+</body>

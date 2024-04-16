@@ -1,0 +1,37 @@
+<head>
+<style>
+.container {
+  display: flex;
+}
+
+.container > * {
+  border: 1px solid green;
+}
+
+.number {
+  display: block;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+  <div class="1">Flex Item</div>
+  <div>Flex Item</div>
+  <div class="2">
+    <div>Children</div>
+    <div>are in</div>
+    <div>normal flow</div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="number 1">Flex Item</div>
+  <div class="number 2">Flex Item</div>
+  <div class="number 3">
+    <div>Children</div>
+    <div>are in</div>
+    <div>normal flow</div>
+  </div>
+</div>
+</body>
