@@ -48,7 +48,8 @@ initCardSelector($cardSelector);
 카드 셀렉터 보여주기
 */
 let showCardSelector = function (e) {
-  $cardSelector.style.visibility = "visible";
+  $cardSelector.style.visibility = 'hidden';
+  $cardSelector.style.visibility = 'visible';
 };
 
 let $$cards = document.querySelectorAll('.main-card');
