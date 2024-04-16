@@ -7,14 +7,21 @@
   <title>Document</title>
 
   <style>
-    html, body {
+    html {
       height: 100%;
     }
 
-    h1 {
-      text-align: center;
+    body {
+      margin: 0;
+      height: 100%;
+      background-image: url(/resources/background.jpg);
+      /*background-size: cover;*/
     }
 
+    h1 {
+      margin: 0;
+      text-align: center;
+    }
 
     /*
     main cards
@@ -57,13 +64,21 @@
       width: 50px;
       height: 72px;
     }
+
+    .card-selector-card:hover{
+      border: solid red 2px;
+      width: 50px;
+      height: 72px;
+    }
   </style>
 
 </head>
 
 <body>
   <div id="content-wrapper">
-    <h1>Poker Rankings!</h1>
+    <div class="title-container">
+      <h1>Poker Rankings!</h1>
+    </div>
     <div class="main-card-container">
       <div id="card-1" class="main-card">카드1</div>
       <div id="card-2" class="main-card">카드2</div>
