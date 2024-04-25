@@ -44,6 +44,23 @@
     }
 
     /*
+    rankings-wrapper
+    족보 결과 표시
+    */
+    #rankings-wrapper {
+      height: 200px;
+      width: 200px;
+      background-color: white;
+    }
+
+    .rankings-text-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+    }
+
+    /*
     card selector
     */
     .card-selector-container {
@@ -70,10 +87,6 @@
       width: 50px;
       height: 72px;
     }
-
-    .card-selector-card-selected {
-      
-    }
   </style>
 
 </head>
@@ -90,8 +103,12 @@
       <div id="main-card-4" class="main-card">카드4</div>
       <div id="main-card-5" class="main-card">카드5</div>
     </div>
-
     <div class="card-selector-container">
+    </div>
+    <div id="rankings-wrapper">
+      <div class="rankings-text-container">
+        <span class="rankings-text-container-text">test</span>
+      </div>
     </div>
 </div>
 </body>
