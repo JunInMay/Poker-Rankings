@@ -87,6 +87,7 @@ let showRankings = function () {
   // straight check
   let startIndex = null;
   let consecutiveCount = 0;
+  let maxConsecutiveCount = -1;
   for (let i = -1; i < CARD_NUMBERS.length; i++) {
     // alternative index
     let ai = (i + CARD_NUMBERS.length) % CARD_NUMBERS.length;
@@ -97,8 +98,8 @@ let showRankings = function () {
     } else if (startIndex != null && !numbersCount[ai]) {
       startIndex = null;
       consecutiveCount = 0;
-      break;
-    }
+      continue;
+    } else if (startIndex == null && !numbersCount[ai]) continue;
     consecutiveCount += 1;
 
     if (consecutiveCount == 5) break;
@@ -110,14 +111,17 @@ let showRankings = function () {
   if (consecutiveCount == 5) {
     isStraight = true;
     if (startIndex == CARD_NUMBERS.length - 1) isBackstraight = true;
-    if (startIndex == CARD_NUMBERS.lenght - 6) isMountain = true;
+    if (startIndex == CARD_NUMBERS.length - 5) isMountain = true;
   }
 
   console.log(`stats
     isPair = ${isPair}
     isThree = ${isThree}
     isFour = ${isFour}
+    startIndex = ${startIndex}
     isStraight = ${isStraight}
+    isBackstraight = ${isBackstraight}
+    isMountain = ${isMountain}
     isFlush = ${isFlush}
     suitsCount = ${suitsCount}
     numbersCount = ${numbersCount}
