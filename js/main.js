@@ -166,6 +166,3 @@ document.body.addEventListener('click', function (e) {
     $CARD_SELECTOR.style.visibility = 'hidden';
   }
 });
-
-console.log(document)
-console.log(document.body)
