@@ -38,6 +38,7 @@ const cardInCardSelector = [];
 
 /*
 족보 계산
+랭킹 계산
 */
 const $RANKINGS_TEXT_CONTAINER_TEXT = document.querySelector('.rankings-text-container-text');
 
@@ -169,7 +170,7 @@ let cardSelect = function (e) {
   $CARD_SELECTOR.style.visibility = 'hidden';
 
   /*
-  메인 카드에 선택한 카드 지정
+  메인 카드에 카드가 선택됐음을 저장
   */
   if (selectedCardInMainCard[selectedMainCardIndex]) {
     let [preSelectedSuit, preSelectedNumber] = selectedCardInMainCard[selectedMainCardIndex];
@@ -239,21 +240,26 @@ let showCardSelector = function (e) {
   const x = e.clientX;
   const y = e.clientY;
 
+  // 카드셀렉터 위치 조정
   const viewportWidth = window.innerWidth;
   const viewportHeight = window.innerHeight;
 
   $CARD_SELECTOR.style.top = y + 'px';
 
-  if (x + $CARD_SELECTOR.offsetWidth > viewportWidth) {
+  if (x + $CARD_SELECTOR.offsetWidth / 2 > viewportWidth) {
     $CARD_SELECTOR.style.left = (viewportWidth - $CARD_SELECTOR.offsetWidth) + 'px';
+  } else if (x - $CARD_SELECTOR.offsetWidth / 2 < 0) {
+    $CARD_SELECTOR.style.left = '0px';
   } else {
-    $CARD_SELECTOR.style.left = x + 'px';
+    $CARD_SELECTOR.style.left = x - $CARD_SELECTOR.offsetWidth / 2 + 'px';
   }
 
   $CARD_SELECTOR.style.visibility = 'hidden';
   $CARD_SELECTOR.style.visibility = 'visible';
 };
 
+
+// 메인 카드에 카드 셀렉터 보여주는 함수 매핑
 let $$cards = document.querySelectorAll('.main-card');
 
 for (let i = 0; i < $$cards.length; i++) {
