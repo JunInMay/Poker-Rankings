@@ -35,13 +35,17 @@
       border-width: 10px;
       border-color: red;
       width: 200px;
-      height: 290.4px;
+      /* height: calc(200px * 1.452); */
+      height: auto;
+      aspect-ratio: 1 / 1.452;
+      object-fit: cover;
       margin: 10px 10px 10px 10px;
     }
 
     .main-card-container {
       display: flex;
       justify-content: center;
+      align-items: center;
       color: black;
       margin-top: 100px;
     }
@@ -50,12 +54,6 @@
     rankings-wrapper
     족보 결과 표시
     */
-    /* #rankings-wrapper {
-      height: 200px;
-      width: 200px;
-      background-color: white;
-    } */
-
     .rankings-text-container {
       display: inline-flex;
       justify-content: center;

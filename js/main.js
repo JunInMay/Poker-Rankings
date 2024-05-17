@@ -163,7 +163,8 @@ let cardSelect = function (e) {
 
   let imagePath = `${CARD_IMAGE_ROOT}${cardID}${png}`;
   $selectedMainCard.style.backgroundImage = `url(${imagePath})`;
-  $selectedMainCard.style.backgroundSize = 'cover';
+  $selectedMainCard.style.backgroundSize = 'contain';
+  $selectedMainCard.style.backgroundRepeat = 'no-repeat';
   cardInCardSelector[suitIndex][numberIndex].selected = true;
 
   e.target.style.filter = 'brightness(70%)';
