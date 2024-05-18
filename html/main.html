@@ -26,6 +26,18 @@
     }
 
     /*
+    main card / rankings
+    메인카드와 족보
+    */
+    #main-rankings-container {
+      display:flex;
+      flex-direction: column;
+      align-items: center;
+
+      width: 100%;
+    }
+
+    /*
     main cards
     */
     /*1 : 1.452 비율*/
@@ -36,7 +48,6 @@
       border-color: red;
       border-radius: 6px;
       width: 200px;
-      height: auto;
       aspect-ratio: 1 / 1.452;
       margin: 10px 10px 10px 10px;
 
@@ -46,6 +57,8 @@
       display: flex;
       justify-content: center;
       align-items: center;
+
+      cursor: pointer;
     }
 
     .main-card-container {
@@ -54,6 +67,7 @@
       align-items: center;
       color: black;
       margin-top: 100px;
+      width: 100%;
     }
 
     .main-card-text {
@@ -65,11 +79,31 @@
     족보 결과 표시
     */
     .rankings-text-container {
-      display: inline-flex;
+      display: flex;
       justify-content: center;
       align-items: center;
       height: 100%;
-      background-color: aliceblue;
+      width: calc(100% - 24px);
+
+      /*
+      main-card의 margin 값에 종속적입니다.
+      */
+      max-width: calc(200px * 5 + 20px * 4 - 4px);
+
+      background: linear-gradient(to right, #ece9e6, #ffffff);
+      /* 그라데이션 배경 */
+      border-radius: 15px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      /* 박스 쉐도우 추가 */
+      font-size: 1.5em;
+      /* 폰트 크기 증가 */
+      font-weight: bold;
+      /* 폰트 굵기 증가 */
+      color: #333;
+      /* 폰트 색상 변경 */
+      border: 2px solid #ccc;
+      /* 보더 추가 */
+      transition: all 0.3s ease;
     }
 
     /*
@@ -108,34 +142,31 @@
     <div class="title-container">
       <h1>Poker Rankings!</h1>
     </div>
-    <div class="main-card-container">
-      <div id="main-card-1" class="main-card">
-        <span class="main-card-text">카드를 골라주세요.</span>
+    <div id="main-rankings-container">
+      <div class="main-card-container">
+        <div id="main-card-1" class="main-card">
+          <span class="main-card-text">카드를 골라주세요.</span>
+        </div>
+        <div id="main-card-2" class="main-card">
+          <span class="main-card-text">카드를 골라주세요.</span>
+        </div>
+        <div id="main-card-3" class="main-card">
+          <span class="main-card-text">카드를 골라주세요.</span>
+        </div>
+        <div id="main-card-4" class="main-card">
+          <span class="main-card-text">카드를 골라주세요.</span>
+        </div>
+        <div id="main-card-5" class="main-card">
+          <span class="main-card-text">카드를 골라주세요.</span>
+        </div>
       </div>
-      <div id="main-card-2" class="main-card">
-        <span class="main-card-text">카드를 골라주세요.</span>
-      </div>
-      <div id="main-card-3" class="main-card">
-        <span class="main-card-text">카드를 골라주세요.</span>
-      </div>
-      <div id="main-card-4" class="main-card">
-        <span class="main-card-text">카드를 골라주세요.</span>
-      </div>
-      <div id="main-card-5" class="main-card">
-        <span class="main-card-text">카드를 골라주세요.</span>
+      <div class="rankings-text-container">
+        <span class="rankings-text-container-text">test</span>
       </div>
     </div>
     <div class="card-selector-container">
     </div>
-    <!-- <div id="rankings-wrapper">
-      <div class="rankings-text-container">
-        <span class="rankings-text-container-text">test</span>
-      </div>
-    </div> -->
-    <div class="rankings-text-container">
-      <span class="rankings-text-container-text">test</span>
-    </div>
-</div>
+  </div>
 </body>
 
 <script src="../js/main.js"></script>
