@@ -38,8 +38,14 @@
       /* height: calc(200px * 1.452); */
       height: auto;
       aspect-ratio: 1 / 1.452;
-      object-fit: cover;
       margin: 10px 10px 10px 10px;
+
+      background-size: contain;
+      background-repeat: no-repeat;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
 
     .main-card-container {
@@ -48,6 +54,10 @@
       align-items: center;
       color: black;
       margin-top: 100px;
+    }
+
+    .main-card-text {
+      user-select: none;
     }
 
     /*
@@ -99,11 +109,21 @@
       <h1>Poker Rankings!</h1>
     </div>
     <div class="main-card-container">
-      <div id="main-card-1" class="main-card">카드1</div>
-      <div id="main-card-2" class="main-card">카드2</div>
-      <div id="main-card-3" class="main-card">카드3</div>
-      <div id="main-card-4" class="main-card">카드4</div>
-      <div id="main-card-5" class="main-card">카드5</div>
+      <div id="main-card-1" class="main-card">
+        <span class="main-card-text">카드를 골라주세요.</span>
+      </div>
+      <div id="main-card-2" class="main-card">
+        <span class="main-card-text">카드를 골라주세요.</span>
+      </div>
+      <div id="main-card-3" class="main-card">
+        <span class="main-card-text">카드를 골라주세요.</span>
+      </div>
+      <div id="main-card-4" class="main-card">
+        <span class="main-card-text">카드를 골라주세요.</span>
+      </div>
+      <div id="main-card-5" class="main-card">
+        <span class="main-card-text">카드를 골라주세요.</span>
+      </div>
     </div>
     <div class="card-selector-container">
     </div>

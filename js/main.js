@@ -163,8 +163,11 @@ let cardSelect = function (e) {
 
   let imagePath = `${CARD_IMAGE_ROOT}${cardID}${png}`;
   $selectedMainCard.style.backgroundImage = `url(${imagePath})`;
-  $selectedMainCard.style.backgroundSize = 'contain';
-  $selectedMainCard.style.backgroundRepeat = 'no-repeat';
+
+  // 메인카드 텍스트 제거(hidden 처리)
+  let $mainCardText = $selectedMainCard.querySelector('.main-card-text');
+  $mainCardText.style.visibility = 'hidden';
+
   cardInCardSelector[suitIndex][numberIndex].selected = true;
 
   e.target.style.filter = 'brightness(70%)';
@@ -232,7 +235,7 @@ initCardSelector($CARD_SELECTOR);
 카드 셀렉터 보여주기
 */
 let showCardSelector = function (e) {
-  let mainCardID = e.target.id;
+  let mainCardID = e.target.closest('.main-card').id;
 
   // 클릭한 메인카드
   $selectedMainCard = document.querySelector('#' + mainCardID);
