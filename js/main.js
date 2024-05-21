@@ -5,6 +5,12 @@ console.log("Javascript Loaded");
 let $selectedMainCard = null;
 let selectedMainCardIndex = null;
 
+// 랭킹(족보) 표기 요소
+const $RANKINGS_TEXT_CONTAINER_TEXT = document.querySelector('.rankings-text-container-text');
+
+// 랭킹(족보) 리스트 하이라이트 요소 배열
+const $$RANKINGS_LIST_TEXT_WRAPPER = Array.from(document.querySelectorAll('.rankings-list-text-wrapper'));
+
 // 메인 카드에 선택된 카드들이 각각 카드 셀렉터에 어느 위치에 저장되어 있는지 확인하기 위한 인덱스
 // [문양, 숫자] 형식으로 저장
 const selectedCardInMainCard = [];
@@ -26,6 +32,12 @@ const png = ".png";
 const CARD_NUMBERS = [
   "2", "3", "4", "5", "6", "7", "8", "9", "10", "jack", "queen", "king", "ace"
 ];
+
+const RANKINGS_STRINGS = [
+  "Highcard", "One pair", "Two pair", "Three of a kind", "Straight", "Flush", "Full House", "Four of a kind", "Straight Flush",
+];
+
+
 for (let i = 0; i < CARD_SUITS.length; i++) {
   for (let j = 0; j < CARD_NUMBERS.length; j++) {
     imageStrings[i * 13 + j] = CARD_NUMBERS[j] + CARD_SUITS[i];
@@ -37,13 +49,38 @@ const cardInCardSelector = [];
 
 
 /*
-족보 계산
-랭킹 계산
+족보 선택시 하이라이트 처리
 */
-const $RANKINGS_TEXT_CONTAINER_TEXT = document.querySelector('.rankings-text-container-text');
+
+/*
+    .rankings-list-text-wrapper-highlighted {
+      color: black;
+      background-color: yellow;
+    }
+*/
+
+/**
+ * 요소 하이라이트 함수
+ * @param
+ * text : 문자열
+ * @description
+ * RANKINGS_STRINGS에 존재하는 족보(One Pair 따위) 문자열을 받아 해당 문자열에 해당하는 $$RANKINGS_LIST_TEXT_WRAPPER에
+ * 하이라이트 처리. 하이라이트 되지 않는 요소는 하이라이트 하지 않음.
+ * 하이라이트 처리/딤드 처리는 class 추가 및 제거로 구현
+*/
+let highlightRankingText = function (text) {
+  const HIGHLIGHT_CLASS_NAME = 'highlighted-rankings-list-text';
+  let rankingTextID = '#r-list-' + text.toLowerCase().replace(' ', '-') + '-wrapper';
+  
+  $$RANKINGS_LIST_TEXT_WRAPPER.map((x) => x.classList.remove(HIGHLIGHT_CLASS_NAME));
+  const $selectedRankingListWrapper = document.querySelector(rankingTextID);
+  
+  $selectedRankingListWrapper.classList.add(HIGHLIGHT_CLASS_NAME);
+}
+
+
 
 let showRankings = function () {
-  $RANKINGS_TEXT_CONTAINER_TEXT.textContent = "Highcard";
   // 어떤 문양이 몇 개고, 어떤 숫자가 몇 개인지 담을 배열 초기화
   let suitsCount = [];
   let numbersCount = [];
@@ -105,7 +142,7 @@ let showRankings = function () {
 
     if (consecutiveCount == 5) break;
   }
-  
+
   let isStraight = false;
   let isMountain = false;
   let isBackstraight = false;
@@ -115,27 +152,19 @@ let showRankings = function () {
     if (startIndex == CARD_NUMBERS.length - 5) isMountain = true;
   }
 
-  console.log(`stats
-    isPair = ${isPair}
-    isThree = ${isThree}
-    isFour = ${isFour}
-    startIndex = ${startIndex}
-    isStraight = ${isStraight}
-    isBackstraight = ${isBackstraight}
-    isMountain = ${isMountain}
-    isFlush = ${isFlush}
-    suitsCount = ${suitsCount}
-    numbersCount = ${numbersCount}
-  `);
+  // 족보 텍스트 설정
+  let rankingsIndex = 0;
+  if (isFlush && isStraight) rankingsIndex = 8
+  else if (isFour) rankingsIndex = 7
+  else if (isThree && isPair) rankingsIndex = 6
+  else if (isFlush) rankingsIndex = 5
+  else if (isStraight) rankingsIndex = 4
+  else if (isThree) rankingsIndex = 3
+  else if (isPair == 2) rankingsIndex = 2
+  else if (isPair == 1) rankingsIndex = 1
+  $RANKINGS_TEXT_CONTAINER_TEXT.textContent = RANKINGS_STRINGS[rankingsIndex]
+  highlightRankingText(RANKINGS_STRINGS[rankingsIndex]);
 
-  if (isFlush && isStraight) $RANKINGS_TEXT_CONTAINER_TEXT.textContent = "Staright Flush";
-  else if (isFour) $RANKINGS_TEXT_CONTAINER_TEXT.textContent = "Four of a kind";
-  else if (isFlush) $RANKINGS_TEXT_CONTAINER_TEXT.textContent = "Flush";
-  else if (isThree && isPair) $RANKINGS_TEXT_CONTAINER_TEXT.textContent = "Full House";
-  else if (isStraight) $RANKINGS_TEXT_CONTAINER_TEXT.textContent = "Straight";
-  else if (isThree) $RANKINGS_TEXT_CONTAINER_TEXT.textContent = "Three of a kind";
-  else if (isPair == 2) $RANKINGS_TEXT_CONTAINER_TEXT.textContent = "Two pair";
-  else if (isPair == 1) $RANKINGS_TEXT_CONTAINER_TEXT.textContent = "One pair";
   /*
   마운틴, 백스트레이트도 있긴 한데 서양 정식 족보는 아니라 집계만 하고 표기에선 제외.
   */
@@ -228,7 +257,6 @@ let initCardSelector = function ($cardSelector) {
     $cardSelector.appendChild(line);
   }
 }
-initCardSelector($CARD_SELECTOR);
 
 /*
 메인 카드 클릭 시
@@ -282,3 +310,12 @@ document.body.addEventListener('click', function (e) {
     $CARD_SELECTOR.style.visibility = 'hidden';
   }
 });
+
+/*
+로드시 실행될 함수 모음
+*/
+let init = function () {
+  initCardSelector($CARD_SELECTOR);
+  highlightRankingText(RANKINGS_STRINGS[0]); // highcard 하이라이팅
+}
+init();

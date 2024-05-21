@@ -30,7 +30,7 @@
     메인카드와 족보
     */
     #main-rankings-container {
-      display:flex;
+      display: flex;
       flex-direction: column;
       align-items: center;
 
@@ -107,6 +107,35 @@
     }
 
     /*
+    rankings-list-text-container
+    족보 리스트 텍스트
+    */
+    .rankings-list-text-container {
+      display: flex;
+      flex-direction: column;
+      flex-wrap: wrap;
+      align-items: center;
+      margin-top: 20px;
+
+    }
+
+    .rankings-list-text-wrapper {
+      background-color: rgb(69, 69, 69);
+      color: rgb(100, 100, 100);
+      width: 200px;
+
+      border: 2px solid black;
+      border-radius: 5px;
+    }
+
+    .highlighted-rankings-list-text {
+      color: black;
+      background-color: yellow;
+    }
+
+    
+
+    /*
     card selector
     */
     .card-selector-container {
@@ -161,9 +190,42 @@
         </div>
       </div>
       <div class="rankings-text-container">
-        <span class="rankings-text-container-text">test</span>
+        <span class="rankings-text-container-text">Highcard</span>
       </div>
     </div>
+
+    <!-- ranking-list-rankings -->
+    <div class="rankings-list-text-container">
+      <!-- r-list = rankings-list -->
+      <div id="r-list-straight-flush-wrapper" class="rankings-list-text-wrapper">
+        <span id="r-list-straight-flush">Straight Flush</span>
+      </div>
+      <div id="r-list-four-of-a-kind-wrapper" class="rankings-list-text-wrapper">
+        <span id="r-list-four-of-a-kind">Four of a Kind</span>
+      </div>
+      <div id="r-list-full-house-wrapper" class="rankings-list-text-wrapper">
+        <span id="r-list-full-house">Full House</span>
+      </div>
+      <div id="r-list-flush-wrapper" class="rankings-list-text-wrapper">
+        <span id="r-list-flush">Flush</span>
+      </div>
+      <div id="r-list-straight-wrapper" class="rankings-list-text-wrapper">
+        <span id="r-list-straight">Straight</span>
+      </div>
+      <div id="r-list-three-of-a-kind-wrapper" class="rankings-list-text-wrapper">
+        <span id="r-list-three-of-a-kind">Three of a Kind</span>
+      </div>
+      <div id="r-list-two-pair-wrapper" class="rankings-list-text-wrapper">
+        <span id="r-list-two-pair">Two Pair</span>
+      </div>
+      <div id="r-list-one-pair-wrapper" class="rankings-list-text-wrapper">
+        <span id="r-list-one-pair">One Pair</span>
+      </div>
+      <div id="r-list-highcard-wrapper" class="rankings-list-text-wrapper">
+        <span id="r-list-highcard">High Card</span>
+      </div>
+    </div>
+
     <div class="card-selector-container">
     </div>
   </div>
