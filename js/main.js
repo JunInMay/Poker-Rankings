@@ -47,18 +47,6 @@ for (let i = 0; i < CARD_SUITS.length; i++) {
 // 카드 셀렉터 내부의 카드
 const cardInCardSelector = [];
 
-
-/*
-족보 선택시 하이라이트 처리
-*/
-
-/*
-    .rankings-list-text-wrapper-highlighted {
-      color: black;
-      background-color: yellow;
-    }
-*/
-
 /**
  * 요소 하이라이트 함수
  * @param
@@ -79,7 +67,13 @@ let highlightRankingText = function (text) {
 }
 
 
-
+/**
+ * 족보 체크
+ * @param
+ * None
+ * @description
+ * suit(문양)와 number(숫자)를 통해 어떤 문양, 어떤 숫자가 몇 개 골라졌는지에 따라 족보를 계산함
+ */
 let showRankings = function () {
   // 어떤 문양이 몇 개고, 어떤 숫자가 몇 개인지 담을 배열 초기화
   let suitsCount = [];
@@ -163,11 +157,13 @@ let showRankings = function () {
   else if (isPair == 2) rankingsIndex = 2
   else if (isPair == 1) rankingsIndex = 1
   $RANKINGS_TEXT_CONTAINER_TEXT.textContent = RANKINGS_STRINGS[rankingsIndex]
-  highlightRankingText(RANKINGS_STRINGS[rankingsIndex]);
-
+  
   /*
   마운틴, 백스트레이트도 있긴 한데 서양 정식 족보는 아니라 집계만 하고 표기에선 제외.
   */
+
+  // 골라진 족보 하이라이트
+  highlightRankingText(RANKINGS_STRINGS[rankingsIndex]);
 }
 
 /*
@@ -317,5 +313,6 @@ document.body.addEventListener('click', function (e) {
 let init = function () {
   initCardSelector($CARD_SELECTOR);
   highlightRankingText(RANKINGS_STRINGS[0]); // highcard 하이라이팅
+  showRankings();
 }
 init();
