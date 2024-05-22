@@ -6,170 +6,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
 
-  <style>
-    /*
-    Defaults
-    */
-    html {
-      height: 100%;
-    }
-
-    body {
-      margin: 0;
-      height: 100%;
-      background-image: url(/resources/background.jpg);
-    }
-
-    h1 {
-      margin: 0;
-      text-align: center;
-    }
-
-    /*
-    main card / rankings
-    메인카드와 족보
-    */
-    #main-rankings-container {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-
-      width: 100%;
-    }
-
-    /*
-    main cards
-    */
-    /*1 : 1.452 비율*/
-    .main-card {
-      color: blueviolet;
-      background-color: antiquewhite;
-      border-width: 10px;
-      border-color: red;
-      border-radius: 6px;
-      width: 200px;
-      aspect-ratio: 1 / 1.452;
-      margin: 10px 10px 10px 10px;
-
-      background-size: contain;
-      background-repeat: no-repeat;
-
-      display: flex;
-      justify-content: center;
-      align-items: center;
-
-      cursor: pointer;
-    }
-
-    .main-card-container {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      color: black;
-      margin-top: 100px;
-      width: 100%;
-    }
-
-    .main-card-text {
-      user-select: none;
-    }
-
-    /*
-    rankings-wrapper
-    족보 결과 표시
-    */
-    .rankings-text-container {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100%;
-      width: calc(100% - 24px);
-
-      /*
-      main-card의 margin 값에 종속적입니다.
-      */
-      max-width: calc(200px * 5 + 20px * 4 - 4px);
-
-      background: linear-gradient(to right, #ece9e6, #ffffff);
-      /* 그라데이션 배경 */
-      border-radius: 15px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-      /* 박스 쉐도우 추가 */
-      font-size: 1.5em;
-      /* 폰트 크기 증가 */
-      font-weight: bold;
-      /* 폰트 굵기 증가 */
-      color: #333;
-      /* 폰트 색상 변경 */
-      border: 2px solid #ccc;
-      /* 보더 추가 */
-      transition: all 0.3s ease;
-    }
-
-    /*
-    rankings-list-text-container
-    족보 리스트 텍스트
-    */
-    .rankings-list-text-container {
-      display: flex;
-      flex-direction: column;
-      flex-wrap: wrap;
-      align-items: center;
-      margin-top: 20px;
-
-    }
-
-    .rankings-list-text-wrapper {
-      background-color: rgb(69, 69, 69);
-      color: rgb(100, 100, 100);
-      width: 200px;
-
-      border: 2px solid black;
-      border-radius: 5px;
-    }
-
-    .highlighted-rankings-list-text {
-      color: black;
-      background-color: yellow;
-    }
-
-    
-
-    /*
-    card selector
-    */
-    .card-selector-container {
-      display: block;
-
-      position: absolute;
-      top: 10px;
-
-      visibility: hidden;
-
-    }
-
-    .card-selector-suit {
-      display: flex;
-    }
-
-    .card-selector-card {
-      width: 50px;
-      height: 72px;
-    }
-
-    .card-selector-card:hover {
-      border: solid red 2px;
-      width: 50px;
-      height: 72px;
-    }
-  </style>
+  <link href="../css/style.css" rel="stylesheet" type="text/css">
 
 </head>
 
 <body>
   <div id="content-wrapper">
     <div class="title-container">
-      <h1>Poker Rankings!</h1>
+      <img src="../resources/title.png" alt="poker rankings! title image"></img>
     </div>
     <div id="main-rankings-container">
       <div class="main-card-container">
@@ -225,9 +69,20 @@
         <span id="r-list-highcard">High Card</span>
       </div>
     </div>
-
     <div class="card-selector-container">
+      <!-- c-s = card-selector -->
+      <div class="card-selector-functional-container">
+        <button id="c-s-functional-cancel-button" class="c-s-functional-button">
+          <img id="c-s-functional-cancel-img" class="c-s-functional-button-img"/>
+        </button>
+        <button id="c-s-functional-refresh-button" class="c-s-functional-button">
+          <img id="c-s-functional-refresh-img" class="c-s-functional-button-img"/>
+        </button>
+      </div>
     </div>
+  </div>
+  <div class="footer">
+    &copy; 2024 Chana. All rights reserved.
   </div>
 </body>
 

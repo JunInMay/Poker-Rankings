@@ -12,7 +12,7 @@ const $RANKINGS_TEXT_CONTAINER_TEXT = document.querySelector('.rankings-text-con
 const $$RANKINGS_LIST_TEXT_WRAPPER = Array.from(document.querySelectorAll('.rankings-list-text-wrapper'));
 
 // 메인 카드에 선택된 카드들이 각각 카드 셀렉터에 어느 위치에 저장되어 있는지 확인하기 위한 인덱스
-// [문양, 숫자] 형식으로 저장
+// [문양 인덱스(CARD_SUITS), 숫자 인덱스(CARD_NUMBERS)] 형식으로 저장
 const selectedCardInMainCard = [];
 
 // 카드 이미지 경로 정의
@@ -24,20 +24,20 @@ const $CARD_SELECTOR = document.querySelector('.card-selector-container');
 /*
 이미지 정의 및 변수 초기화
 */
-let imageStrings = [];
 const CARD_SUITS = [
   "_of_clubs", "_of_diamonds", "_of_hearts", "_of_spades"
 ];
-const png = ".png";
 const CARD_NUMBERS = [
   "2", "3", "4", "5", "6", "7", "8", "9", "10", "jack", "queen", "king", "ace"
 ];
+const png = ".png";
+
 
 const RANKINGS_STRINGS = [
-  "Highcard", "One pair", "Two pair", "Three of a kind", "Straight", "Flush", "Full House", "Four of a kind", "Straight Flush",
+  "Highcard", "One pair", "Two pair", "Three of a kind", "Straight", "Flush", "Full House", "Four of a Kind", "Straight Flush",
 ];
 
-
+let imageStrings = []; // 사용되지 않음.
 for (let i = 0; i < CARD_SUITS.length; i++) {
   for (let j = 0; j < CARD_NUMBERS.length; j++) {
     imageStrings[i * 13 + j] = CARD_NUMBERS[j] + CARD_SUITS[i];
@@ -45,7 +45,7 @@ for (let i = 0; i < CARD_SUITS.length; i++) {
 }
 
 // 카드 셀렉터 내부의 카드
-const cardInCardSelector = [];
+let cardInCardSelector = null;
 
 /**
  * 요소 하이라이트 함수
@@ -58,11 +58,11 @@ const cardInCardSelector = [];
 */
 let highlightRankingText = function (text) {
   const HIGHLIGHT_CLASS_NAME = 'highlighted-rankings-list-text';
-  let rankingTextID = '#r-list-' + text.toLowerCase().replace(' ', '-') + '-wrapper';
+  let rankingTextID = '#r-list-' + text.toLowerCase().replaceAll(' ', '-') + '-wrapper';
   
   $$RANKINGS_LIST_TEXT_WRAPPER.map((x) => x.classList.remove(HIGHLIGHT_CLASS_NAME));
   const $selectedRankingListWrapper = document.querySelector(rankingTextID);
-  
+
   $selectedRankingListWrapper.classList.add(HIGHLIGHT_CLASS_NAME);
 }
 
@@ -195,6 +195,7 @@ let cardSelect = function (e) {
 
   cardInCardSelector[suitIndex][numberIndex].selected = true;
 
+  // 선택한 카드는 card selector 내부에서 밝기 조절됨
   e.target.style.filter = 'brightness(70%)';
   $CARD_SELECTOR.style.visibility = 'hidden';
 
@@ -221,6 +222,13 @@ let cardSelect = function (e) {
 카드 셀렉터 초기화
 */
 let initCardSelector = function ($cardSelector) {
+  // 카드
+  let $cardSelectorSuitContainer = document.createElement('div');
+  $cardSelectorSuitContainer.classList.add('card-selector-suit-container');
+
+  // 전역으로 선언했던 카드 셀렉터 내부의 카드들을 카드 셀렉터 초기화 시에 정의함
+  cardInCardSelector = [];
+
   for (let i = 0; i < 4; i++) {
     let line = document.createElement('div');
     line.classList.add('card-selector-suit');
@@ -250,8 +258,10 @@ let initCardSelector = function ($cardSelector) {
 
       line.appendChild(card);
     }
-    $cardSelector.appendChild(line);
+    $cardSelectorSuitContainer.appendChild(line);
   }
+  $cardSelector.prepend($cardSelectorSuitContainer);
+
 }
 
 /*
@@ -294,22 +304,74 @@ for (let i = 0; i < $$cards.length; i++) {
   $$cards[i].addEventListener('click', showCardSelector);
 }
 
-/*
-카드 셀렉터 숨기기
-*/
+/**
+ * 리프레시
+ * @param
+ * none
+ * @description
+ * 고른 카드들을 모두 초기화하는 함수
+ * 1. 메인 카드 이미지 없애기
+ * 2. 메인 카드 텍스트 다시 추가하기
+ * 3. 카드 셀렉터 서식 초기화하기
+ * 4. 메인카드에 선택된 카드 셀렉터 요소 배열 초기화하기
+ */
+let refreshAll = function () {
+  // 1. 전체 메인 카드 배경 이미지 초기화
+  let $$MAIN_CARD = Array.from(document.querySelectorAll('.main-card'));
+  $$MAIN_CARD.map((x) => {
+    x.style.backgroundImage = '';
+  })
+
+  // 2. 메인카드 텍스트 복구
+  let $$MAIN_CARD_TEXT = Array.from(document.querySelectorAll('.main-card-text'));
+  $$MAIN_CARD_TEXT.map((x) => {
+    x.style.visibility = 'visible';
+  });
+
+  // 3. 카드 셀렉터 서식 초기화
+  cardInCardSelector.map((x) => {
+    x.map(y => {
+      y.style.filter = '';
+      y.selected = false;
+    });
+  });
+
+  // 4. 메인카드에 선택된 카드 셀렉터 요소 배열 초기화
+  selectedCardInMainCard.length = 0;
+  selectedMainCardIndex = null;
+
+  showRankings();
+  closeCardSelector();
+}
+// 리프레시 버튼 매핑
+document.querySelector('#c-s-functional-refresh-button').addEventListener('click', refreshAll);
+
+/**
+ * 카드 셀렉터 닫기
+ * @description
+ * 카드 셀렉터 닫기 함수
+ */
+let closeCardSelector = function() {
+  $CARD_SELECTOR.style.visibility = 'hidden';
+}
+
+// 카드 셀렉터 닫기 매핑
+document.querySelector('#c-s-functional-cancel-button').addEventListener('click', closeCardSelector);
 document.body.addEventListener('click', function (e) {
   // main card 혹은 card selector를 클릭하지 않았을 경우
   const isMainCard = e.target.closest('.main-card');
   const isCardSelector = e.target.closest('.card-selector-container');
 
   if (!isMainCard && !isCardSelector) {
-    $CARD_SELECTOR.style.visibility = 'hidden';
+    closeCardSelector();
   }
 });
 
-/*
-로드시 실행될 함수 모음
-*/
+/**
+ * 초기화
+ * @description
+ * 자바스크립트 최초 로드시 실행되는 함수 모음
+ */
 let init = function () {
   initCardSelector($CARD_SELECTOR);
   highlightRankingText(RANKINGS_STRINGS[0]); // highcard 하이라이팅

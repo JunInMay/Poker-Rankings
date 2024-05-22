@@ -1,0 +1,240 @@
+    /*
+    Defaults
+    */
+    html {
+        height: 100%;
+      }
+  
+      body {
+        margin: 0px;
+        height: 100%;
+        background-image: url(/resources/background.jpg);
+        background-repeat: no-repeat;
+        background-size: cover;
+        overflow-x: hidden
+      }
+  
+      h1 {
+        text-align: center;
+      }
+  
+      /* 
+      Title
+      */
+      .title-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+      }
+  
+      .title-container img {
+        /*
+        main-card의 margin, width 값과 종속적
+        */
+        max-width: calc(200px * 5 + 20px * 4 - 4px);
+        max-height: 170px;
+        width: 100%;
+        object-fit: contain;
+      }
+  
+      /*
+      main card / rankings
+      메인카드와 족보
+      */
+      #main-rankings-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+  
+        width: 100%;
+      }
+  
+      /*
+      main cards
+      */
+      /*1 : 1.452 비율*/
+      .main-card {
+        color: black;
+        background-color: antiquewhite;
+        border-width: 10px;
+        border-color: red;
+        border-radius: 6px;
+        width: 200px;
+        aspect-ratio: 1 / 1.452;
+        margin: 10px 10px 10px 10px;
+  
+        background-size: contain;
+        background-repeat: no-repeat;
+  
+        display: flex;
+        justify-content: center;
+        align-items: center;
+  
+        cursor: pointer;
+      }
+  
+      .main-card-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: black;
+        margin-top: 50px;
+        width: 100%;
+      }
+  
+      .main-card-text {
+        user-select: none;
+      }
+  
+      /*
+      rankings-wrapper
+      족보 결과 표시
+      */
+      .rankings-text-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+        width: calc(100% - 24px);
+  
+        /*
+        main-card의 margin, width 값과 종속적입니다.
+        */
+        max-width: calc(200px * 5 + 20px * 4 - 4px);
+  
+        background: linear-gradient(to right, #ece9e6, #ffffff);
+        /* 그라데이션 배경 */
+        border-radius: 15px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        /* 박스 쉐도우 추가 */
+        font-size: 1.5em;
+        /* 폰트 크기 증가 */
+        font-weight: bold;
+        /* 폰트 굵기 증가 */
+        color: #333;
+        /* 폰트 색상 변경 */
+        border: 2px solid #ccc;
+        /* 보더 추가 */
+        transition: all 0.3s ease;
+  
+        -webkit-user-drag: none;
+        user-select: none;
+        cursor: default;
+      }
+  
+      /*
+      rankings-list-text-container
+      족보 리스트 텍스트
+      */
+      .rankings-list-text-container {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        align-items: center;
+        margin-top: 20px;
+  
+        user-select: none;
+        cursor: default;
+      }
+  
+      .rankings-list-text-wrapper {
+        background-color: rgb(69, 69, 69);
+        color: rgb(100, 100, 100);
+        width: 200px;
+  
+        border: 2px solid black;
+        border-radius: 5px;
+        opacity: 0.96;
+      }
+  
+      .highlighted-rankings-list-text {
+        background-color: #e5ff00;
+        color: #155724;
+        font-weight: bold;
+        opacity: 1;
+      }
+  
+      /*
+      card selector
+      */
+      .card-selector-container {
+        display: flex;
+  
+        position: absolute;
+        top: 10px;
+  
+        visibility: hidden;
+      }
+  
+      .card-selector-suit-container {
+        display: flex;
+        flex-direction: column;
+      }
+  
+      .card-selector-suit {
+        display: flex;
+      }
+  
+      /*1 : 1.452 비율*/
+      .card-selector-card {
+        width: 60px;
+        height: calc(60px * 1.452);
+        border: solid grey 2px;
+        /* margin: 1px; */
+      }
+  
+      .card-selector-card:hover {
+        border: solid red 2px;
+        filter: brightness(70%);
+      }
+  
+      /*
+      card selector functional
+      카드 셀렉터 기능성 버튼
+      */
+      .card-selector-functional-container {
+        display: flex;
+        flex-direction: column;
+  
+      }
+      .c-s-functional-button {
+        justify-content: center;
+        align-items: center;
+        width: 60px;
+        height: calc(60px * 2 * 1.452 + 8px);
+        margin: 0px;
+      }
+  
+      .c-s-functional-button-img {
+        width: 100%;
+        aspect-ratio: 1/1;
+      }
+  
+      #c-s-functional-cancel-img {
+        content: url('../resources/cancel_button.png');
+      }
+  
+      #c-s-functional-refresh-img {
+        content: url('../resources/refresh_button.png');
+      }
+  
+      /*
+      Footer styles
+      */
+      .footer {
+        width: 100%;
+        padding: 10px 0px 10px 0px;
+        background-color: rgba(9, 9, 9, 0.8);
+        text-align: center;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        font-size: 0.8em;
+        color: #e4dcdc;
+        box-shadow: 0 -1px 5px rgba(0, 0, 0, 0.1);
+  
+        user-select: none;
+        cursor: default;
+      }
+  
